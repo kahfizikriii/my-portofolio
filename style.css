@@ -1,0 +1,417 @@
+/* ==================================== */
+/* 1. VARIABEL & RESET */
+/* ==================================== */
+:root {
+    --color-navy-dark: #001f3f; /* Navy Gelap */
+    --color-navy-light: #003366; /* Navy Terang */
+    --color-cream: #f5f5dc; /* Cream */
+    --color-light-cream: #ffffff; /* Putih/Cream Sangat Terang */
+    --color-accent: #ffc107; /* Sedikit aksen kuning keemasan/mustard */
+    --font-primary: 'Montserrat', sans-serif;
+    --shadow-elegant: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--color-light-cream) 0%, var(--color-cream) 100%);
+    color: var(--color-navy-dark);
+}
+
+/* ==================================== */
+/* 2. HEADER & HERO SECTION */
+/* ==================================== */
+.hero-section {
+    /* Menambahkan warna ketiga untuk loop animasi yang lebih mulus */
+    background: linear-gradient(45deg, var(--color-navy-dark), var(--color-navy-light), var(--color-navy-dark));
+    color: var(--color-cream);
+    padding: 60px 20px 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 200%; /* Membuat background lebih besar untuk dianimasikan */
+    animation: gradient-animation 15s ease infinite; /* Menerapkan animasi */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: 0;
+}
+
+.profile-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-elegant);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row; /* Menyusun item secara horizontal */
+    align-items: center; /* Menengahkan item secara vertikal */
+    justify-content: center; /* Menengahkan konten di dalam card */
+    gap: 30px; /* Memberi jarak antara foto dan teks */
+}
+
+/* Menghapus styling contact info dan social links yang ada di header */
+.contact-info, .social-links, .social-icon {
+    /* Style ini hanya berlaku di bagian .contact-section baru */
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+    object-fit: cover;
+    border: 5px solid var(--color-cream); /* Bingkai elegan di sekitar foto */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sedikit bayangan untuk efek 3D */
+    flex-shrink: 0; /* Mencegah gambar menyusut */
+}
+
+.profile-info-text {
+    text-align: left; /* Mengatur teks agar rata kiri */
+}
+
+.name {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--color-cream);
+    margin-bottom: 0;
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+
+/* ==================================== */
+/* 3. MAIN CONTENT (SAME AS BEFORE) */
+/* ==================================== */
+.container {
+    max-width: 1200px;
+    margin: -40px auto 40px auto;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-card {
+    background-color: var(--color-light-cream);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-elegant); /* Bayangan awal */
+    border-left: 5px solid var(--color-navy-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk animasi */
+}
+
+.section-card:hover {
+    transform: translateY(-5px); /* Efek mengangkat kartu */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Bayangan lebih jelas saat hover */
+}
+
+.section-title {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--color-navy-dark);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    position: relative; /* Diperlukan untuk pseudo-element */
+}
+
+/* Membuat garis bawah animasi */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-navy-light);
+    transform: scaleX(0); /* Awalnya garis tidak terlihat */
+    transform-origin: left;
+    transition: transform 0.4s ease-out;
+}
+
+.section-card:hover .section-title::after {
+    transform: scaleX(1); /* Garis muncul saat kartu di-hover */
+}
+
+.icon-bullet {
+    color: var(--color-accent);
+    margin-right: 10px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+/* --- Styling Timeline Pendidikan --- */
+.timeline {
+    position: relative;
+    padding-left: 30px; /* Ruang untuk garis dan titik */
+}
+
+/* Garis vertikal di sepanjang timeline */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background-color: #ddd;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/* Titik penanda untuk setiap item timeline */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px; /* (lebar titik / 2) + padding-left timeline */
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-light-cream);
+    border: 3px solid var(--color-navy-light);
+    z-index: 1;
+}
+
+
+/* ==================================== */
+/* 4. DETAIL KONTAK (BARU) */
+/* ==================================== */
+.contact-detail-item {
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.contact-detail-item strong {
+    font-weight: 600;
+    display: block;
+    color: var(--color-navy-light);
+}
+
+.contact-detail-item a {
+    color: var(--color-navy-dark);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-detail-item a:hover {
+    color: var(--color-accent);
+}
+
+/* Style untuk ikon sosial di bagian kontak */
+.social-links-footer .social-icon {
+    font-size: 2em;
+    margin: 0 15px;
+    color: var(--color-navy-dark); /* Ubah warna agar terlihat di latar cream */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links-footer .social-icon:hover {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+
+/* ==================================== */
+/* 5. DIAGRAM LINGKARAN BAHASA */
+/* ==================================== */
+
+.language-progress-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.progress-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 10px;
+    background-image: conic-gradient(
+        var(--color-navy-dark) 0deg,
+        var(--color-navy-light) 0deg,
+        #ddd 0deg
+    );
+}
+
+.circle-content {
+    width: 85px;
+    height: 85px;
+    background-color: var(--color-light-cream);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--color-navy-dark);
+    line-height: 1.2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
+    transition: transform 0.3s ease;
+}
+
+.circle-content:hover {
+    transform: scale(1.05);
+}
+
+.circle-content span {
+    font-size: 0.65em;
+    font-weight: 400;
+    color: var(--color-navy-light);
+}
+
+
+/* ==================================== */
+/* 6. FOOTER (SAME AS BEFORE) */
+/* ==================================== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-navy-dark);
+    color: var(--color-cream);
+    font-size: 0.85em;
+}
+
+/* ==================================== */
+/* 7. ANIMASI (SAME AS BEFORE) */
+/* ==================================== */
+.animate-in-up, .animate-in-left, .animate-in-right {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.animate-in-up {
+    transform: translateY(20px);
+}
+
+.animate-in-left {
+    transform: translateX(-50px);
+}
+
+.animate-in-right {
+    transform: translateX(50px);
+}
+
+.animate-in-up.visible,
+.animate-in-left.visible,
+.animate-in-right.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Keyframes untuk animasi gradien di hero section */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ==================================== */
+/* 8. RESPONSIVITAS */
+/* ==================================== */
+@media (max-width: 992px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .name {
+        font-size: 2.5em;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 15px; /* Mengurangi ukuran font dasar untuk layar kecil */
+    }
+
+    .contact-info a {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    .contact-info.top-contact {
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    .social-links.top-social {
+        margin-bottom: 10px;
+    }
+
+    .language-progress-container {
+        justify-content: center;
+    }
+
+    .hero-section {
+        padding: 40px 20px 60px 20px;
+    }
+
+    .name {
+        font-size: 1.5em;
+    }
+
+    .profile-card {
+        flex-direction: column; /* Mengembalikan layout ke vertikal di mobile */
+        text-align: center; /* Menengahkan teks di mobile */
+        gap: 15px;
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .title {
+        font-size: 0.9em;
+    }
+
+    .profile-info-text {
+        text-align: center; /* Menengahkan teks di mobile */
+    }
+}
